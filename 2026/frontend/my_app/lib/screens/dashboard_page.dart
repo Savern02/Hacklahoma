@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
 
