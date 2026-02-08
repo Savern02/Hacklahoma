@@ -62,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
     Container(
             width: 100,
             height: 100,
-            child: Image.asset('assets/image1.png'),
+            child: Image.asset('assets/images/LifeDashLogo.png')
             ),
     Text(
       'Welcome to LifeDash!',
