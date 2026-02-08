@@ -13,7 +13,7 @@ class CreateDailyLog extends StatefulWidget {
 class _CreateDailyLogState extends State<CreateDailyLog> {
 
   final TextEditingController titleController = TextEditingController();
-  final TextEditingController descriptionController = TextEditingController();
+  final TextEditingController bodyController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,23 +22,19 @@ class _CreateDailyLogState extends State<CreateDailyLog> {
       body: Column(
         children: [
           TextField(
-            decoration: const InputDecoration(
-              labelText: 'Title',
-            ),
+            decoration: const InputDecoration(hintText: 'Title',),
             controller: titleController,
           ),
           TextField(
-            decoration: const InputDecoration(
-              labelText: 'Description',
-            ),
-            controller: descriptionController,
+            decoration: const InputDecoration(hintText: 'Body',),
+            controller: bodyController,
           ),
           ElevatedButton(
             onPressed: () async {
               // Save the daily log entry
               await supabase.from('daily_logs').insert({
                 'title': titleController.text,
-                'body': descriptionController.text,
+                'body': bodyController.text,
               });
 
               // Navigate back to the previous screen
@@ -49,8 +45,7 @@ class _CreateDailyLogState extends State<CreateDailyLog> {
               foregroundColor: Theme.of(context).colorScheme.onPrimary,
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               textStyle: Theme.of(context).textTheme.titleMedium,
-            ),
-            child: const Text('Save Log Entry'),
+            ), child: const Text('Save Log Entry'),
           ),
         ],
       ),
