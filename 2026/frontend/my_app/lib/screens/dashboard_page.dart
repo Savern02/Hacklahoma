@@ -30,7 +30,6 @@ class DashboardContent extends StatelessWidget {
           Expanded(
             child: Column(
               children: [
-                // Replace this with your actual content
                 ElevatedButton(
                   onPressed: () {
                     Navigator.push(

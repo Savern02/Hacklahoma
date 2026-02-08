@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/screens/login.dart';
+import 'package:my_app/screens/signUp.dart';
 import 'package:my_app/widgets/swipe_down_arrow.dart';
 import 'package:my_app/screens/dashboard_page.dart';
 class MyHomePage extends StatefulWidget {
@@ -54,55 +56,71 @@ class _MyHomePageState extends State<MyHomePage> {
             //color: Color(0xf7f9ff).withOpacity(0.99), // semi-transparent background
             padding: EdgeInsets.all(16),
             child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-    Container(
-            width: 100,
-            height: 100,
-            child: Image.asset('assets/images/LifeDashLogo.png')
+            // Column is also a layout widget. It takes a list of children and
+            // arranges them vertically. By default, it sizes itself to fit its
+            // children horizontally, and tries to be as tall as its parent.
+            //
+            // Column has various properties to control how it sizes itself and
+            // how it positions its children. Here we use mainAxisAlignment to
+            // center the children vertically; the main axis here is the vertical
+            // axis because Columns are vertical (the cross axis would be
+            // horizontal).
+            //
+            // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
+            // action in the IDE, or press "p" in the console), to see the
+            // wireframe for each widget.
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+            Container(
+                    width: 100,
+                    height: 100,
+                    child: Image.asset('assets/images/LifeDashLogo.png')
+                    ),
+            Text(
+              'Welcome to LifeDash!',
+              style: Theme.of(context).textTheme.titleLarge,
             ),
-    Text(
-      'Welcome to LifeDash!',
-      style: Theme.of(context).textTheme.titleLarge,
-    ),
-    const SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-    // Your sign-in button
-    ElevatedButton(
-      onPressed: () {
-       Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const DashboardPage(),
-      ),
-    );
-      },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        foregroundColor: Theme.of(context).colorScheme.onPrimary,
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        textStyle: Theme.of(context).textTheme.titleMedium,
-      ),
-      child: const Text('Sign In'),
-    ),
-    SwipeDownArrow(),
-    SizedBox(height: 8),
-    Text("Scroll down for more info", style: Theme.of(context).textTheme.bodySmall),
-    //if (showBottomPart) BottomPart(), // loaded when scrolled
-  ],
+            // Your sign-in button
+            ElevatedButton(
+              onPressed: () {
+              Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SignUp(),
+              ),
+            );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                textStyle: Theme.of(context).textTheme.titleMedium,
+              ),
+              child: const Text('Sign Up'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+              Navigator.push(
+              context,  
+              MaterialPageRoute(
+                builder: (context) => const Login(),
+              ),);
+              },
+                style: ElevatedButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+                textStyle: Theme.of(context).textTheme.titleMedium,
+              ),
+               child: const Text('Log In'),
+            ),
+            SwipeDownArrow(),
+            SizedBox(height: 8),
+            Text("Scroll down for more info", style: Theme.of(context).textTheme.bodySmall),
+            //if (showBottomPart) BottomPart(), // loaded when scrolled
+            ],
             ),
           ),
         ),
