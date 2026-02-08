@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/widgets/swipe_down_arrow.dart';
+import 'package:my_app/screens/dashboard_page.dart';
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -39,11 +41,19 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
+    return Scaffold(  
+      body: Container(
+       // decoration: BoxDecoration(
+          //image: DecorationImage(
+           // image: AssetImage('assets/images/homepage-background.png'),
+           // fit: BoxFit.cover,
+         // ),
+       // ),
+        child: Center(
+          child: Container(
+            //color: Color(0xf7f9ff).withOpacity(0.99), // semi-transparent background
+            padding: EdgeInsets.all(16),
+            child: Column(
           // Column is also a layout widget. It takes a list of children and
           // arranges them vertically. By default, it sizes itself to fit its
           // children horizontally, and tries to be as tall as its parent.
@@ -57,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
           // action in the IDE, or press "p" in the console), to see the
           // wireframe for each widget.
-          mainAxisAlignment: .center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
     Container(
             width: 100,
@@ -73,8 +83,12 @@ class _MyHomePageState extends State<MyHomePage> {
     // Your sign-in button
     ElevatedButton(
       onPressed: () {
-        // TODO: add sign-in logic
-        print('Sign-in button pressed');
+       Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const DashboardPage(),
+      ),
+    );
       },
       style: ElevatedButton.styleFrom(
         backgroundColor: Theme.of(context).colorScheme.primary,
@@ -84,13 +98,42 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       child: const Text('Sign In'),
     ),
+    SwipeDownArrow(),
+    SizedBox(height: 8),
+    Text("Scroll down for more info", style: Theme.of(context).textTheme.bodySmall),
+    //if (showBottomPart) BottomPart(), // loaded when scrolled
   ],
+            ),
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      
+    );
+  }
+}
+
+class BottomPart extends StatelessWidget {
+  const BottomPart({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(16),
+      color: Colors.blueGrey[50],
+      child: Column(
+        children: [
+          Text(
+            "Bottom Part",
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
+          SizedBox(height: 16),
+          Card(
+            child: Padding(
+              padding: EdgeInsets.all(16),
+              child: Text("This content loads when you scroll down."),
+            ),
+          ),
+        ],
       ),
     );
   }

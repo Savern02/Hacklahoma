@@ -11,8 +11,13 @@ class DashboardPage extends StatelessWidget {
           Expanded(
             child: Column(
               children: const [
-                TopBar(),
+                  
                 Expanded(child: DashboardContent()),
+        floatingActionButton: FloatingActionButton(
+        onPressed: _incrementCounter,
+        tooltip: 'Increment',
+        child: const Icon(Icons.add),
+      ),
               ],
             ),
           ),
