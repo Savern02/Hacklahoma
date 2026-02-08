@@ -42,7 +42,7 @@ class _SignUpState extends State<SignUp> {
           decoration: InputDecoration(hintText: 'Last Name'),
           controller: lastNameController,
           ),
-        MaterialButton(
+        ElevatedButton(
           onPressed: () async {
             final authResponse = await supabase.auth.signUp(
               email: emailController.text,
@@ -60,7 +60,14 @@ class _SignUpState extends State<SignUp> {
               'last_name': lastNameController.text,
               'email': emailController.text,
             });
-          }, child: Text("Sign Up"),
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            foregroundColor: Theme.of(context).colorScheme.onPrimary,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            textStyle: Theme.of(context).textTheme.titleMedium,
+          ),
+          child: Text("Sign Up"),
         )
       ],)
     );

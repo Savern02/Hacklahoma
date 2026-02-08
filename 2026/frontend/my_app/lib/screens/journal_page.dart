@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/screens/create_daily_log.dart';
 import 'package:my_app/screens/daily_logs.dart';
 
 class JournalPage extends StatelessWidget {
@@ -14,7 +15,7 @@ class JournalPage extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (_) => DailyLogsPage(),
+              builder: (_) => CreateDailyLog(),
             ),
           );
         }, child: const Text('Add Daily Log Entry'))
