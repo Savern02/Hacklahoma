@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
-final supabase = Supabase.instance.client;
+import 'package:my_app/screens/dashboard_page.dart';
+import 'package:my_app/supabase.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -21,34 +20,55 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController lastNameController = TextEditingController();
 
   Widget build(BuildContext context) {
-    return Column(
+    return Scaffold( 
+      appBar: AppBar(title: const Text('Sign Up')),
+      body: Column(
       children: [
         TextField(
+          decoration: InputDecoration(hintText: 'Email'),
           controller: emailController,
           ),
         TextField(
+          decoration: InputDecoration(hintText: 'Password'),
           controller: passwordController,
           obscureText: true,
           ),
         TextField(
+          decoration: InputDecoration(hintText: 'First Name'),
           controller: firstNameController,
           ),
         TextField(
+          decoration: InputDecoration(hintText: 'Last Name'),
           controller: lastNameController,
           ),
-        MaterialButton(
+        ElevatedButton(
           onPressed: () async {
-            await supabase.auth.signUp(
+            final authResponse = await supabase.auth.signUp(
               email: emailController.text,
               password: passwordController.text,
             );
-            await supabase.from('profiles').insert({
-              'id': supabase.auth.currentUser!.id,
+
+            if (authResponse.user != null) {
+              debugPrint("User signed up successfully: ${authResponse.user!.email}");
+
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const DashboardPage()));
+            }
+
+            await supabase.from('users').insert({
               'first_name': firstNameController.text,
               'last_name': lastNameController.text,
+              'email': emailController.text,
             });
-          }, child: Text("Sign Up"),
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Theme.of(context).colorScheme.primary,
+            foregroundColor: Theme.of(context).colorScheme.onPrimary,
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+            textStyle: Theme.of(context).textTheme.titleMedium,
+          ),
+          child: Text("Sign Up"),
         )
-      ],);
+      ],)
+    );
   }
 }
