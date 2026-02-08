@@ -10,7 +10,6 @@ class SignUp extends StatefulWidget {
   State<SignUp> createState() => _SignUpState();
 }
 
-
 // This is the state for the SignUp widget.
 // It displays two text input fields, one for email and one for password, and on pressing the submit button,
 // it calls the supabase.auth.signUp method with the email and password provided by the user.
