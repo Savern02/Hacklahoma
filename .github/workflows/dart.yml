@@ -15,7 +15,7 @@ jobs:
           channel: 'stable'
           architecture: x64
       - run: cd 2026/frontend/my_app
-      - run: echo "$PWD"
+      - run: echo pwd
       - run: flutter pub get
       
 
