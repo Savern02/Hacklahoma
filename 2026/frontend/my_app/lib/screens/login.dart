@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/screens/dashboard_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 final supabase = Supabase.instance.client;
@@ -26,10 +27,25 @@ class _LoginState extends State<Login> {
       ),
       MaterialButton(
         onPressed: () async {
-          await supabase.auth.signInWithPassword(
-            email: emailController.text,
-            password: passwordController.text,
-          );
+          try {
+            final authResponse = await supabase.auth.signUp(email: emailController.text, password: passwordController.text);
+            if (authResponse.user != null) {
+              // Give the user time to read the email confirmation before redirecting to the dashboard
+              await Future.delayed(const Duration(seconds: 1));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const DashboardPage(),
+                ),
+              );
+            }
+            } on AuthException catch (error) {
+              // Handle specific Supabase Auth errors
+              debugPrint('Sign up error: ${error.message}');
+            } catch (error) {
+              // Handle other potential errors
+              debugPrint('An unexpected error occurred: $error');
+            }
         })
     ],);
   }
