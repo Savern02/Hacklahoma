@@ -15,20 +15,24 @@ class DashboardContent extends StatelessWidget {
         onPressed: () {
           // Example increment logic
         },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        tooltip: 'Talk to your AI Coach',
+        child: const Icon(Icons.chat_bubble_outline),
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     // Example increment logic
+      //   },
+      //   tooltip: 'Account',
+      //   child: const Icon(Icons.manage),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       body: Row(
         children: [
           const Sidebar(),
-          // const TopBar(
-          //   currentPage: 'dashboard',
-          //   onNavigate: (page) {
-          //     // Handle navigation logic herer
-          //   },
-          // ),
           Expanded(
-            child: Column(
+            child: Center ( child:Column(
+              mainAxisSize: MainAxisSize.min, // only take needed vertical space
+              mainAxisAlignment: MainAxisAlignment.center, // center vertically
               children: [
                 ElevatedButton(
                   onPressed: () {
@@ -64,7 +68,7 @@ class DashboardContent extends StatelessWidget {
                   child: const Text('Nutrition Tracker'),
                 ),
               ],
-            ),
+            ),),
           ),
         ],
       ),

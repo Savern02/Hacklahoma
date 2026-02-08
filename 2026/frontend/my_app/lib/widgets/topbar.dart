@@ -12,7 +12,7 @@ class TopBar extends StatelessWidget {
     required this.onNavigate,
     this.onLogout,
     this.userName,
-  }) : super(key: key);
+  }) : super(key: key); 
 
   @override
   Widget build(BuildContext context) {
