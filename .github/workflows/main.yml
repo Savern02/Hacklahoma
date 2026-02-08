@@ -1,0 +1,19 @@
+name: create the env
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create .env file
+        run: |
+          echo "SUPABASE_API_KEY=${{ secrets.SUPABASE_API_KEY }}" > .env
+          echo "SUPABASE_URL=${{ secrets.SUPABASE_URL }}" >> .env
+          echo "SUPABASE_URL=${{ secrets.GEMINI_API_KEY }}" >> .env
+          

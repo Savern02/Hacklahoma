@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'sidebar_item.dart';
+import 'package:my_app/screens/SettingsPage.dart';
+import 'package:my_app/screens/dashboard_page.dart';
 class Sidebar extends StatelessWidget {
   const Sidebar({super.key});
 
@@ -12,7 +14,6 @@ class Sidebar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 32),
-
           // Logo / Title
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
@@ -29,9 +30,8 @@ class Sidebar extends StatelessWidget {
           const SizedBox(height: 32),
 
           // Menu items
-          SidebarItem(icon: Icons.dashboard, label: 'Dashboard'),
-          SidebarItem(icon: Icons.bar_chart, label: 'Analytics'),
-          SidebarItem(icon: Icons.settings, label: 'Settings'),
+          SidebarItem(icon: Icons.dashboard, label: 'Dashboard', page:  DashboardContent()),
+          SidebarItem(icon: Icons.settings, label: 'Settings', page:  SettingsPage()),
         ],
       ),
     );
