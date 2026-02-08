@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'sidebar_item.dart';
 
 class Sidebar extends StatelessWidget {
   const Sidebar({super.key});
