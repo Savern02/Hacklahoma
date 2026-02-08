@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/widgets/sidebar.dart';
+
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
 
@@ -11,8 +13,8 @@ class DashboardPage extends StatelessWidget {
           Expanded(
             child: Column(
               children: const [
-                TopBar(),
-                Expanded(child: DashboardContent()),
+                //TopBar(),
+                //Expanded(child: DashboardContent()),
               ],
             ),
           ),
