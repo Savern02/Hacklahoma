@@ -3,6 +3,7 @@ import 'package:my_app/screens/login.dart';
 import 'package:my_app/screens/signUp.dart';
 import 'package:my_app/widgets/swipe_down_arrow.dart';
 import 'package:my_app/screens/dashboard_page.dart';
+import 'package:my_app/widgets/topbar_wave.dart';
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -23,6 +24,44 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  
+  Widget _buildInfoBlock({
+  required IconData icon,
+  required String title,
+  required String content,
+}) {
+  return Expanded(
+    child: Card(
+      elevation: 3,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      margin: const EdgeInsets.all(8),
+      child: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Icon(icon, size: 40, color: Colors.blueAccent),
+            const SizedBox(height: 16),
+            Text(
+              title,
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 12),
+            Text(
+              content,
+              style: const TextStyle(fontSize: 16, height: 1.5),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+}
+
+
 
   void _incrementCounter() {
     setState(() {
@@ -44,88 +83,137 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(  
-      body: Container(
-       // decoration: BoxDecoration(
-          //image: DecorationImage(
-           // image: AssetImage('assets/images/homepage-background.png'),
-           // fit: BoxFit.cover,
-         // ),
-       // ),
-        child: Center(
-          child: Container(
-            //color: Color(0xf7f9ff).withOpacity(0.99), // semi-transparent background
-            padding: EdgeInsets.all(16),
-            child: Column(
-            // Column is also a layout widget. It takes a list of children and
-            // arranges them vertically. By default, it sizes itself to fit its
-            // children horizontally, and tries to be as tall as its parent.
-            //
-            // Column has various properties to control how it sizes itself and
-            // how it positions its children. Here we use mainAxisAlignment to
-            // center the children vertically; the main axis here is the vertical
-            // axis because Columns are vertical (the cross axis would be
-            // horizontal).
-            //
-            // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-            // action in the IDE, or press "p" in the console), to see the
-            // wireframe for each widget.
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-            Container(
-                    width: 100,
-                    height: 100,
-                    child: Image.asset('assets/images/LifeDashLogo.png')
-                    ),
-            Text(
-              'Welcome to LifeDash!',
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            const SizedBox(height: 20),
+      appBar: WaveTopBar(
+        height: 120,
+        color: Colors.blueAccent,),
+      body: SingleChildScrollView(
+  child: Padding(
+    padding: const EdgeInsets.all(16),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        // Logo and welcome
+        Container(
+          width: 100,
+          height: 100,
+          child: Image.asset('assets/images/LifeDashLogo.png'),
+        ),
+        Text(
+          'Welcome to LifeDash!',
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+        const SizedBox(height: 20),
 
-            // Your sign-in button
+        // Sign-up / Log-in buttons
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
             ElevatedButton(
               onPressed: () {
-              Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const SignUp(),
-              ),
-            );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SignUp()),
+                );
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                textStyle: Theme.of(context).textTheme.titleMedium,
-              ),
               child: const Text('Sign Up'),
             ),
+            const SizedBox(width: 16),
             ElevatedButton(
               onPressed: () {
-              Navigator.push(
-              context,  
-              MaterialPageRoute(
-                builder: (context) => const Login(),
-              ),);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Login()),
+                );
               },
-                style: ElevatedButton.styleFrom(
-                backgroundColor: Theme.of(context).colorScheme.primary,
-                foregroundColor: Theme.of(context).colorScheme.onPrimary,
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-                textStyle: Theme.of(context).textTheme.titleMedium,
-              ),
-               child: const Text('Log In'),
+              child: const Text('Log In'),
             ),
-            SwipeDownArrow(),
-            SizedBox(height: 8),
-            Text("Scroll down for more info", style: Theme.of(context).textTheme.bodySmall),
-            //if (showBottomPart) BottomPart(), // loaded when scrolled
-            ],
-            ),
-          ),
+          ],
         ),
-      ),
-      
+
+        const SizedBox(height: 40),
+
+        // Swipe arrow + scroll hint
+        SwipeDownArrow(),
+        const SizedBox(height: 8),
+        Text(
+          "Scroll down for more info",
+          style: Theme.of(context).textTheme.bodySmall,
+        ),
+
+        const SizedBox(height: 400), // big gap before product info
+
+        // Product Info Section
+        LayoutBuilder(
+          builder: (context, constraints) {
+            bool isWide = constraints.maxWidth > 600;
+
+            if (isWide) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                      width: 300,
+                      child: _buildInfoBlock(
+                        icon: Icons.lightbulb_outline,
+                        title: "About LifeDash",
+                        content:
+                            "LifeDash is your all-in-one productivity dashboard that helps you track goals, journal your progress, and stay on top of your daily habits.",
+                      )),
+                  SizedBox(
+                      width: 300,
+                      child: _buildInfoBlock(
+                        icon: Icons.check_circle_outline,
+                        title: "Features",
+                        content:
+                            "Track your progress, log daily activities, analyze your habits, and gain actionable insights to optimize your productivity.",
+                      )),
+                  SizedBox(
+                      width: 300,
+                      child: _buildInfoBlock(
+                        icon: Icons.trending_up,
+                        title: "Boost Productivity",
+                        content:
+                            "By keeping everything in one place, LifeDash reduces friction, improves focus, and helps you achieve your goals faster.",
+                      )),
+                ],
+              );
+            } else {
+              return Column(
+                children: [
+                  _buildInfoBlock(
+                    icon: Icons.lightbulb_outline,
+                    title: "About LifeDash",
+                    content:
+                        "LifeDash is your all-in-one productivity dashboard that helps you track goals, journal your progress, and stay on top of your daily habits.",
+                  ),
+                  const SizedBox(height: 24),
+                  _buildInfoBlock(
+                    icon: Icons.check_circle_outline,
+                    title: "Features",
+                    content:
+                        "Track your progress, log daily activities, analyze your habits, and gain actionable insights to optimize your productivity.",
+                  ),
+                  const SizedBox(height: 24),
+                  _buildInfoBlock(
+                    icon: Icons.trending_up,
+                    title: "Boost Productivity",
+                    content:
+                        "By keeping everything in one place, LifeDash reduces friction, improves focus, and helps you achieve your goals faster.",
+                  ),
+                ],
+              );
+            }
+          },
+        ),
+
+        const SizedBox(height: 60), // gap before bottom part
+
+        const BottomPart(),
+      ],
+    ),
+  ),
+),
     );
   }
 }
@@ -141,14 +229,15 @@ class BottomPart extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "Bottom Part",
-            style: Theme.of(context).textTheme.headlineMedium,
+            "Made with ❤️ at Hacklahoma 2026",
+            style: Theme.of(context).textTheme.titleSmall,
           ),
+          Image.asset('assets/images/BeeLogo.png'),
           SizedBox(height: 16),
           Card(
             child: Padding(
               padding: EdgeInsets.all(16),
-              child: Text("This content loads when you scroll down."),
+              child: Text("@TeamLifeDash - 2026"),
             ),
           ),
         ],
@@ -156,3 +245,5 @@ class BottomPart extends StatelessWidget {
     );
   }
 }
+
+

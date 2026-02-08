@@ -3,6 +3,7 @@ import 'package:my_app/widgets/sidebar.dart';
 import 'package:my_app/screens/progress_page.dart';
 import 'package:my_app/screens/journal_page.dart';
 import 'package:my_app/screens/nutrition_page.dart';
+import 'package:my_app/widgets/topbar.dart';
 
 class DashboardContent extends StatelessWidget {
   const DashboardContent({super.key});
@@ -14,14 +15,24 @@ class DashboardContent extends StatelessWidget {
         onPressed: () {
           // Example increment logic
         },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+        tooltip: 'Talk to your AI Coach',
+        child: const Icon(Icons.chat_bubble_outline),
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     // Example increment logic
+      //   },
+      //   tooltip: 'Account',
+      //   child: const Icon(Icons.manage),
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.endTop,
       body: Row(
         children: [
           const Sidebar(),
           Expanded(
-            child: Column(
+            child: Center ( child:Column(
+              mainAxisSize: MainAxisSize.min, // only take needed vertical space
+              mainAxisAlignment: MainAxisAlignment.center, // center vertically
               children: [
                 ElevatedButton(
                   onPressed: () {
@@ -57,7 +68,7 @@ class DashboardContent extends StatelessWidget {
                   child: const Text('Nutrition Tracker'),
                 ),
               ],
-            ),
+            ),),
           ),
         ],
       ),
