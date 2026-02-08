@@ -18,7 +18,7 @@ jobs:
       - run: cd 2026/frontend/my_app && flutter pub get
       
 
-      - run: pod repo update
+      - run: cd 2026/frontend/my_app && pod repo update
         working-directory: ios
 
       - run: flutter build ios --release --no-codesign
