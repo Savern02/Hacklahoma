@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/screens/signUp.dart';
 import 'package:my_app/widgets/swipe_down_arrow.dart';
 import 'package:my_app/screens/dashboard_page.dart';
 class MyHomePage extends StatefulWidget {
@@ -86,7 +87,7 @@ class _MyHomePageState extends State<MyHomePage> {
        Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const DashboardPage(),
+        builder: (context) => const SignUp(),
       ),
     );
       },
