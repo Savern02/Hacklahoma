@@ -12,7 +12,6 @@ class Sidebar extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 32),
-
           // Logo / Title
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 16),
