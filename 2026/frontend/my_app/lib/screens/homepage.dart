@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream
+=======
+import 'package:my_app/screens/login.dart';
+import 'package:my_app/screens/signUp.dart';
+import 'package:my_app/widgets/swipe_down_arrow.dart';
+>>>>>>> Stashed changes
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -39,6 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
+<<<<<<< Updated upstream
     return Scaffold(
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -64,6 +71,46 @@ class _MyHomePageState extends State<MyHomePage> {
       style: Theme.of(context).textTheme.titleLarge,
     ),
     const SizedBox(height: 20),
+=======
+    return Scaffold(  
+      body: Container(
+       // decoration: BoxDecoration(
+          //image: DecorationImage(
+           // image: AssetImage('assets/images/homepage-background.png'),
+           // fit: BoxFit.cover,
+         // ),
+       // ),
+        child: Center(
+          child: Container(
+            //color: Color(0xf7f9ff).withOpacity(0.99), // semi-transparent background
+            padding: EdgeInsets.all(16),
+            child: Column(
+            // Column is also a layout widget. It takes a list of children and
+            // arranges them vertically. By default, it sizes itself to fit its
+            // children horizontally, and tries to be as tall as its parent.
+            //
+            // Column has various properties to control how it sizes itself and
+            // how it positions its children. Here we use mainAxisAlignment to
+            // center the children vertically; the main axis here is the vertical
+            // axis because Columns are vertical (the cross axis would be
+            // horizontal).
+            //
+            // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
+            // action in the IDE, or press "p" in the console), to see the
+            // wireframe for each widget.
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+            SizedBox(
+                    width: 100,
+                    height: 100,
+                    child: Image.asset('assets/images/LifeDashLogo.png')
+                    ),
+            Text(
+              'Welcome to LifeDash!',
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            const SizedBox(height: 20),
+>>>>>>> Stashed changes
 
     // Your sign-in button
     ElevatedButton(
