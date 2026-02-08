@@ -22,8 +22,9 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController lastNameController = TextEditingController();
 
   Widget build(BuildContext context) {
-    return Material( 
-      child: Column(
+    return Scaffold( 
+      appBar: AppBar(title: const Text('Sign Up')),
+      body: Column(
       children: [
         TextField(
           decoration: InputDecoration(hintText: 'Email'),

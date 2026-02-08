@@ -40,6 +40,9 @@ class _CreateDailyLogState extends State<CreateDailyLog> {
                 'title': titleController.text,
                 'body': descriptionController.text,
               });
+
+              // Navigate back to the previous screen
+              Navigator.pop(context);
             },
             style: ElevatedButton.styleFrom(
               backgroundColor: Theme.of(context).colorScheme.primary,

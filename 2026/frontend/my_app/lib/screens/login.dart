@@ -15,10 +15,12 @@ class _LoginState extends State<Login> {
 
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return Material( 
-      child: Column(children: [
+    return Scaffold( 
+      appBar: AppBar(title: const Text('Log In')),
+      body: Column(children: [
       TextField(
         decoration: InputDecoration(
             hintText: 'Email'
