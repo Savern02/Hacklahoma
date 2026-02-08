@@ -14,6 +14,7 @@ class JournalPage extends StatelessWidget {
       body: Row(children: [
         // Daily Logs Column
         Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [  
             ElevatedButton(onPressed: () {
               //Navigate to the Daily Logs Page
@@ -38,6 +39,7 @@ class JournalPage extends StatelessWidget {
 
         // Notes Column
         Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ElevatedButton(onPressed: () {
               //Navigate to the Notes Page
