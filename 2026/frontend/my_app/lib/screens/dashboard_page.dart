@@ -21,12 +21,12 @@ class DashboardContent extends StatelessWidget {
       body: Row(
         children: [
           const Sidebar(),
-          const TopBar(
-            currentPage: 'dashboard',
-            onNavigate: (page) {
-              // Handle navigation logic herer
-            },
-          ),
+          // const TopBar(
+          //   currentPage: 'dashboard',
+          //   onNavigate: (page) {
+          //     // Handle navigation logic herer
+          //   },
+          // ),
           Expanded(
             child: Column(
               children: [
