@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/screens/dashboard_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 final supabase = Supabase.instance.client;
@@ -25,36 +26,35 @@ class _SignUpState extends State<SignUp> {
       child: Column(
       children: [
         TextField(
-          decoration: InputDecoration(
-            hintText: 'Email'
-          ),
+          decoration: InputDecoration(hintText: 'Email'),
           controller: emailController,
           ),
         TextField(
-          decoration: InputDecoration(
-            hintText: 'Password'
-          ),
+          decoration: InputDecoration(hintText: 'Password'),
           controller: passwordController,
           obscureText: true,
           ),
         TextField(
-          decoration: InputDecoration(
-            hintText: 'First Name'
-          ),
+          decoration: InputDecoration(hintText: 'First Name'),
           controller: firstNameController,
           ),
         TextField(
-          decoration: InputDecoration(
-            hintText: 'Last Name'
-          ),
+          decoration: InputDecoration(hintText: 'Last Name'),
           controller: lastNameController,
           ),
         MaterialButton(
           onPressed: () async {
-            await supabase.auth.signUp(
+            final authResponse = await supabase.auth.signUp(
               email: emailController.text,
               password: passwordController.text,
             );
+
+            if (authResponse.user != null) {
+              debugPrint("User signed up successfully: ${authResponse.user!.email}");
+
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const DashboardPage()));
+            }
+
             await supabase.from('users').insert({
               'first_name': firstNameController.text,
               'last_name': lastNameController.text,

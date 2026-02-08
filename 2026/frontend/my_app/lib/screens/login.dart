@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/screens/dashboard_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 final supabase = Supabase.instance.client;
@@ -33,10 +34,16 @@ class _LoginState extends State<Login> {
       ),
       MaterialButton(
         onPressed: () async {
-          await supabase.auth.signInWithPassword(
+          final authResponse = await supabase.auth.signInWithPassword(
             email: emailController.text,
             password: passwordController.text,
           );
+
+          if (authResponse.user != null) {
+              debugPrint("User signed in successfully: ${authResponse.user!.email}");
+
+              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const DashboardPage()));
+            }
         })
     ],)
     );
