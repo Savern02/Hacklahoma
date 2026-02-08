@@ -8,7 +8,8 @@ class DailyLogsPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-        final future = useMemoized(() => supabase.from('daily_logs').select('title, body, created_at'));
+
+    final future = useMemoized(() => supabase.from('daily_logs').select('id, title, body, created_at'));
     final snapshot = useFuture(future);
 
     if (snapshot.hasError) {

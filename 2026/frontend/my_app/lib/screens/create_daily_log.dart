@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
-final supabase = Supabase.instance.client;
+import 'package:my_app/supabase.dart';
 
 class CreateDailyLog extends StatefulWidget {
   const CreateDailyLog({super.key});

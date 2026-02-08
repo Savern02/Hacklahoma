@@ -38,6 +38,8 @@ class _EditNoteState extends State<EditNote> {
                 'body': bodyController.text,
               }).eq('id', widget.note['id']);
 
+              debugPrint('Note updated successfully');
+
               // Navigate back to the previous screen
               Navigator.pop(context);
             },
@@ -47,7 +49,10 @@ class _EditNoteState extends State<EditNote> {
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               textStyle: Theme.of(context).textTheme.titleMedium,
             ), child: const Text('Save Notes'),
-        )
+          ),
+          ElevatedButton(onPressed: () {
+            Navigator.pop(context);
+          }, child: const Text('Cancel'))
       ],
       )
     );  

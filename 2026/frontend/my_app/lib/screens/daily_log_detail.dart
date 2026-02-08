@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/screens/edit_daily_log.dart';
+import 'package:my_app/supabase.dart';
 
 class DailyLogDetailPage extends StatelessWidget {
   final Map<String, dynamic> dailyLog;
@@ -30,6 +32,20 @@ class DailyLogDetailPage extends StatelessWidget {
                   color: Colors.grey[800],
                   fontSize: 14.0)
             ),
+                        ElevatedButton(onPressed: () {
+              // Navigate to the Edit Note Page
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => EditDailyLog(dailyLog: dailyLog),
+                ),
+              );
+            }, child: const Text('Edit Daily Log')),
+            ElevatedButton(onPressed: () {
+              // Delete the daily log
+              supabase.from('daily_logs').delete().eq('id', dailyLog['id']);
+              Navigator.pop(context);
+            }, child: const Text('Delete Daily Log'))
           ],
         ),
       ),

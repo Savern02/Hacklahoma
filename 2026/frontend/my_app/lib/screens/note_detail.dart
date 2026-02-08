@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/screens/edit_note.dart';
+import 'package:my_app/supabase.dart';
 
 class NoteDetailPage extends StatelessWidget {
   final Map<String, dynamic> note;
@@ -39,7 +40,12 @@ class NoteDetailPage extends StatelessWidget {
                   builder: (_) => EditNote(note: note),
                 ),
               );
-            }, child: const Text('Edit Note'))
+            }, child: const Text('Edit Note')),
+            ElevatedButton(onPressed: () {
+              // Delete the note
+              supabase.from('notes').delete().eq('id', note['id']);
+              Navigator.pop(context);
+            }, child: const Text('Delete Note'))
           ],
         ),
       ),
