@@ -14,6 +14,7 @@ jobs:
         with:
           channel: 'stable'
           architecture: x64
+      - run: cd 2026/frontend/my_app
       - run: flutter pub get
       
 
