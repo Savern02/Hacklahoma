@@ -16,11 +16,18 @@ class _LoginState extends State<Login> {
   final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
+    return Material( 
+      child: Column(children: [
       TextField(
+        decoration: InputDecoration(
+            hintText: 'Email'
+        ),
         controller: emailController
       ),
       TextField(
+        decoration: InputDecoration(
+            hintText: 'Password'
+        ),
         controller: passwordController,
         obscureText: true,
       ),
@@ -31,6 +38,7 @@ class _LoginState extends State<Login> {
             password: passwordController.text,
           );
         })
-    ],);
+    ],)
+    );
   }
 }

@@ -21,19 +21,32 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController lastNameController = TextEditingController();
 
   Widget build(BuildContext context) {
-    return Column(
+    return Material( 
+      child: Column(
       children: [
         TextField(
+          decoration: InputDecoration(
+            hintText: 'Email'
+          ),
           controller: emailController,
           ),
         TextField(
+          decoration: InputDecoration(
+            hintText: 'Password'
+          ),
           controller: passwordController,
           obscureText: true,
           ),
         TextField(
+          decoration: InputDecoration(
+            hintText: 'First Name'
+          ),
           controller: firstNameController,
           ),
         TextField(
+          decoration: InputDecoration(
+            hintText: 'Last Name'
+          ),
           controller: lastNameController,
           ),
         MaterialButton(
@@ -42,13 +55,14 @@ class _SignUpState extends State<SignUp> {
               email: emailController.text,
               password: passwordController.text,
             );
-            await supabase.from('profiles').insert({
-              'id': supabase.auth.currentUser!.id,
+            await supabase.from('users').insert({
               'first_name': firstNameController.text,
               'last_name': lastNameController.text,
+              'email': emailController.text,
             });
           }, child: Text("Sign Up"),
         )
-      ],);
+      ],)
+    );
   }
 }
