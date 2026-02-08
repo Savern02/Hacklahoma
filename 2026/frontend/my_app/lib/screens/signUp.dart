@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:my_app/screens/dashboard_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 final supabase = Supabase.instance.client;
@@ -9,8 +8,6 @@ class SignUp extends StatefulWidget {
 
   @override
   State<SignUp> createState() => _SignUpState();
-
-
 }
 
 // This is the state for the SignUp widget.
@@ -41,31 +38,10 @@ class _SignUpState extends State<SignUp> {
           ),
         MaterialButton(
           onPressed: () async {
-            try {
-              final authResponse = await supabase.auth.signUp(email: emailController.text, password: passwordController.text);
-              if (authResponse.user != null) {
-
-                // Inform the user of successful sign in and of the email confermation step.
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Sign up successful! Please check your email to confirm your account.')),
-                );
-
-                // Give the user time to read the email confirmation before redirecting to the dashboard
-                await Future.delayed(const Duration(seconds: 1));
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const DashboardPage(),
-                  ),
-                );
-              }
-            } on AuthException catch (error) {
-              // Handle specific Supabase Auth errors
-              debugPrint('Sign up error: ${error.message}');
-            } catch (error) {
-              // Handle other potential errors
-              debugPrint('An unexpected error occurred: $error');
-            }
+            await supabase.auth.signUp(
+              email: emailController.text,
+              password: passwordController.text,
+            );
             await supabase.from('profiles').insert({
               'id': supabase.auth.currentUser!.id,
               'first_name': firstNameController.text,
