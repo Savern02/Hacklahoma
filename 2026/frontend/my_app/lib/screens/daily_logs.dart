@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:my_app/screens/daily_log_detail.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 final supabase = Supabase.instance.client;
@@ -26,23 +27,26 @@ class DailyLogsPage extends HookWidget {
         itemCount: dailyLogs.length,
         itemBuilder: (context, index) {
           final dailyLog = dailyLogs[index];
-          return ListTile(
-            title: Text(
-              dailyLog['title'] ?? 'No title', 
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 14.0,
-                fontWeight: FontWeight.bold)
-            ),
 
-            // This bit of code is way too long, but it works, don't break it, please.
-            subtitle: Text(
-              'Created on: ${dailyLog['created_at'].toString().substring(0, dailyLog['created_at'].toString().indexOf('T'))}r',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 12.0)
-            ),
-          );
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: ElevatedButton(
+              onPressed: () {
+                // Navigate to the Daily Log Detail Page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => DailyLogDetailPage(dailyLog: dailyLog),
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.all(16.0),
+                alignment: Alignment.centerLeft,
+              ),
+              child: Text(dailyLog['title'] ?? 'No title'),
+            )
+          );          
         },
       ),
     );
