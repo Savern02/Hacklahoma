@@ -4,12 +4,7 @@ import 'package:my_app/screens/signUp.dart';
 import 'package:my_app/widgets/swipe_down_arrow.dart';
 import 'package:my_app/screens/dashboard_page.dart';
 import 'package:my_app/widgets/topbar_wave.dart';
-<<<<<<< Updated upstream
-=======
-import 'package:my_app/screens/login.dart';
-import 'package:my_app/screens/signUp.dart';
-import 'package:my_app/widgets/swipe_down_arrow.dart';
->>>>>>> Stashed changes
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
