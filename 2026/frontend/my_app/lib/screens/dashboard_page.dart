@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/widgets/sidebar.dart';
-<<<<<<< HEAD
 import 'package:my_app/screens/progress_page.dart';
 import 'package:my_app/screens/journal_page.dart';
 import 'package:my_app/screens/nutrition_page.dart';
 
 class DashboardContent extends StatelessWidget {
   const DashboardContent({super.key});
-=======
-
-class DashboardPage extends StatelessWidget {
-  const DashboardPage({super.key});
->>>>>>> 2ad739537ac8d59f59a7516e9ac2b695e01123a1
 
   @override
   Widget build(BuildContext context) {
