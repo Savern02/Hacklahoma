@@ -3,6 +3,7 @@ import 'package:my_app/widgets/sidebar.dart';
 import 'package:my_app/screens/progress_page.dart';
 import 'package:my_app/screens/journal_page.dart';
 import 'package:my_app/screens/nutrition_page.dart';
+import 'package:my_app/widgets/topbar.dart';
 
 class DashboardContent extends StatelessWidget {
   const DashboardContent({super.key});
@@ -20,6 +21,12 @@ class DashboardContent extends StatelessWidget {
       body: Row(
         children: [
           const Sidebar(),
+          const TopBar(
+            currentPage: 'dashboard',
+            onNavigate: (page) {
+              // Handle navigation logic herer
+            },
+          ),
           Expanded(
             child: Column(
               children: [
