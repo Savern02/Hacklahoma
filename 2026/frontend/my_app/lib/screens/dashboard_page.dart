@@ -4,6 +4,7 @@ import 'package:my_app/screens/progress_page.dart';
 import 'package:my_app/screens/journal_page.dart';
 import 'package:my_app/screens/nutrition_page.dart';
 import 'package:my_app/widgets/topbar.dart';
+import 'package:my_app/widgets/gemini_chat.dart';
 
 class DashboardContent extends StatelessWidget {
   const DashboardContent({super.key});
@@ -13,7 +14,10 @@ class DashboardContent extends StatelessWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // Example increment logic
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => ChatScreen()),
+          );
         },
         tooltip: 'Talk to your AI Coach',
         child: const Icon(Icons.chat_bubble_outline),

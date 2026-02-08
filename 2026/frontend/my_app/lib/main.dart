@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:my_app/screens/theme/apptheme.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_gemini/flutter_gemini.dart';
 
 Future<void> main() async {
   try {
@@ -16,6 +17,11 @@ Future<void> main() async {
     url: dotenv.env['SUPABASE_URL']!,
     anonKey: dotenv.env['SUPABASE_API_KEY']!,
   );
+  // API key for Gemini initialization
+
+  await Gemini.init(
+    apiKey: dotenv.env['GEMINI_API_KEY']!, 
+    enableDebugging: true);
 
   runApp(const MyApp());
 }
