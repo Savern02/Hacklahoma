@@ -15,9 +15,7 @@ jobs:
           channel: 'stable'
           architecture: x64
       - run: ls
-      - run: cd 2026/frontend/my_app
-      - run: pwd
-      - run: flutter pub get
+      - run: cd 2026/frontend/my_app && flutter pub get
       
 
       - run: pod repo update
