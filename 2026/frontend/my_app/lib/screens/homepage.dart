@@ -59,6 +59,11 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: .center,
           children: [
+    Container(
+            width: 100,
+            height: 100,
+            child: Image.asset('assets/image1.png'),
+            ),
     Text(
       'Welcome to LifeDash!',
       style: Theme.of(context).textTheme.titleLarge,
