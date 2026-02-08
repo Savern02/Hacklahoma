@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/screens/dashboard_page.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
-final supabase = Supabase.instance.client;
+import 'package:my_app/supabase.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});

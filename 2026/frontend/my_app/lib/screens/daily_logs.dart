@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:my_app/screens/daily_log_detail.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
-final supabase = Supabase.instance.client;
+import 'package:my_app/supabase.dart';
 
 class DailyLogsPage extends HookWidget {
   const DailyLogsPage({super.key});

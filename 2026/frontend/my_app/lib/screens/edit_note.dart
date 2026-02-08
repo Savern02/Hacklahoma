@@ -1,38 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/supabase.dart';
 
-class MakeNotes extends StatefulWidget {
-  const MakeNotes({super.key});
+class EditNote extends StatefulWidget {
+  final Map<String, dynamic> note;
+
+  const EditNote({super.key, required this.note});
 
   @override
-  State<MakeNotes> createState() => _MakeNotesState();
+  State<EditNote> createState() => _EditNoteState();
 }
 
-class _MakeNotesState extends State<MakeNotes> {
+class _EditNoteState extends State<EditNote> {
 
   final TextEditingController titleController = TextEditingController();
   final TextEditingController bodyController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Make Notes')),
+      appBar: AppBar(title: const Text('Edit Note')),
       body: Column(
         children: [
           TextField(
-            controller: titleController,
+            controller: titleController..text = widget.note['title'] ?? '',
+
             decoration: const InputDecoration(hintText: 'Title'),
           ),
           TextField(
-            controller: bodyController,
+            controller: bodyController..text = widget.note['body'] ?? '',
             decoration: const InputDecoration(hintText: 'Body'),
           ),
           ElevatedButton(
             onPressed: () async {
               // Save the daily log entry
-              await supabase.from('notes').insert({
+              await supabase.from('notes').update({
                 'title': titleController.text,
                 'body': bodyController.text,
-              });
+              }).eq('id', widget.note['id']);
 
               // Navigate back to the previous screen
               Navigator.pop(context);
@@ -43,9 +47,9 @@ class _MakeNotesState extends State<MakeNotes> {
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
               textStyle: Theme.of(context).textTheme.titleMedium,
             ), child: const Text('Save Notes'),
-          )
-        ],
-      ),
-    );
+        )
+      ],
+      )
+    );  
   }
 }

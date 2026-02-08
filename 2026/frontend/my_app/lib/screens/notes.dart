@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:my_app/screens/note_detail.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
-
-final supabase = Supabase.instance.client;
+import 'package:my_app/supabase.dart';
 
 // We use the HookWidget over the StatefulWidget because they handle async data better and are more concise.
 // They also have a lot of built in hooks that make it easier to manage state and side effects.
@@ -12,7 +10,7 @@ class NotesPage extends HookWidget {
   
   @override
   Widget build(BuildContext context) {
-    final future = useMemoized(() => supabase.from('notes').select('title, body, created_at'));
+    final future = useMemoized(() => supabase.from('notes').select('id, title, body, created_at'));
     final snapshot = useFuture(future);
 
     if (snapshot.hasError) {

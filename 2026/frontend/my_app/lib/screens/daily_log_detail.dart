@@ -21,7 +21,9 @@ class DailyLogDetailPage extends StatelessWidget {
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold)
             ),
-            SizedBox(height: 8.0),
+            // I don't think we want to restrict the height of the body of the daily log, 
+            // so I'm commenting this out for now. We can always add it back in if we want to.
+            //SizedBox(height: 8.0),
             Text(
               'Logged on: ${dailyLog['created_at'].toString().substring(0, dailyLog['created_at'].toString().indexOf('T'))}\n\n${dailyLog['body'] ?? 'No content'}',
                 style: TextStyle(
